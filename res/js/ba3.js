@@ -7,8 +7,6 @@
 //
 // ======================================================= //
 
-var gameRunning = false;
-
 function storyScroll() {
     if (this.getY()>=-550) {
         this.setY(this.getY()-1);

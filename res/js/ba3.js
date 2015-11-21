@@ -15,6 +15,13 @@ function storyScroll() {
     }
 }
 
+function runGame() {
+    bob5Debug("Running Game...");
+
+    bob5ClearAll();    
+
+}
+
 function runIntro() {
     bob5Debug("Running Intro...");
 
@@ -27,6 +34,9 @@ function runIntro() {
     renderer.add(story);
     story.move = storyScroll;
     movecontroller.add(story);
+    
+    mouseClickMonitor.add(story);
+    story.onMouseClick = runGame;
     
 }
 

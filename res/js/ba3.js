@@ -19,6 +19,7 @@ var pos_y_start;
 var pos_x_end;
 var pos_y_end;
 var tiles = [];
+var fromdir = 0;
 
 // ======================================================= //
 // OBJECTS
@@ -75,6 +76,22 @@ function storyScroll() {
     }
 }
 
+
+
+
+// ======================================================= //
+// MAIN GAME LOGIC
+// ======================================================= //
+
+function showCurrentTile() {
+    bob5ClearAll();    
+
+    tile = level[pos_y_current][pos_x_current];
+    renderer.add(tiles[tile.tiletype]);
+    
+    
+}
+
 function loadLevel() {
     // raw level data
     raw_level = new Array(14);
@@ -120,21 +137,15 @@ function loadLevel() {
         tiles[i] = new b5roSprite("./res/img/maze-"+i+".jpg",0,0,800,600);
     } 
     
-    
 }
 
 
-
-// ======================================================= //
-// MAIN GAME LOGIC
-// ======================================================= //
-
 function runGame() {
     bob5Debug("Running Game...");
-
-    bob5ClearAll();    
     
     loadLevel()
+
+    showCurrentTile()
 
 }
 

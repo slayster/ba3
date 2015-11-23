@@ -85,6 +85,29 @@ function moveBobInNorth() {
     }
 }
 
+function moveBobInSouth() {
+    if (this.getY()>=238) {
+        this.setY(this.getY()-1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
+
+function moveBobInEast() {
+    if (this.getX()>=345) {
+        this.setX(this.getX()-1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
+
+function moveBobInWest() {
+    if (this.getX()<345) {
+        this.setX(this.getX()+1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
 
 
 // ======================================================= //
@@ -98,7 +121,21 @@ function showCurrentTile() {
     renderer.add(tiles[tile.tiletype]);
     
     renderer.add(bob);
-    bob.move = moveBobInNorth;
+    
+    switch (fromdir) {
+        case 0:
+            bob.move = moveBobInNorth;
+            break;
+        case 1:
+            bob.move = moveBobInSouth;
+            break;
+        case 2:
+            bob.move = moveBobInEast;
+            break;
+        case 3:
+            bob.move = moveBobInWest;
+            break;
+    }
     movecontroller.add(bob);    
     
     

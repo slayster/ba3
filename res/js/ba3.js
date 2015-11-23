@@ -18,7 +18,7 @@ var pos_x_start;
 var pos_y_start;
 var pos_x_end;
 var pos_y_end;
-
+var tiles = [];
 
 // ======================================================= //
 // OBJECTS
@@ -113,7 +113,12 @@ function loadLevel() {
     pos_x_current = pos_x_start;
     pos_y_current = pos_y_start;
     
-    // load graphics?
+    // load graphics
+    
+    // load maze tiles
+    for (i=0; i<17; i++) {
+        tiles[i] = new b5roSprite("./res/img/maze-"+i+".jpg",0,0,800,600);
+    } 
     
     
 }

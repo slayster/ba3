@@ -20,6 +20,7 @@ var pos_x_end;
 var pos_y_end;
 var tiles = [];
 var fromdir = 0;
+var bob;
 
 // ======================================================= //
 // OBJECTS
@@ -76,6 +77,13 @@ function storyScroll() {
     }
 }
 
+function moveBobInNorth() {
+    if (this.getY()<238) {
+        this.setY(this.getY()+1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
 
 
 
@@ -88,6 +96,10 @@ function showCurrentTile() {
 
     tile = level[pos_y_current][pos_x_current];
     renderer.add(tiles[tile.tiletype]);
+    
+    renderer.add(bob);
+    bob.move = moveBobInNorth;
+    movecontroller.add(bob);    
     
     
 }
@@ -136,6 +148,8 @@ function loadLevel() {
     for (i=0; i<17; i++) {
         tiles[i] = new b5roSprite("./res/img/maze-"+i+".jpg",0,0,800,600);
     } 
+    // load bob (109x125)
+    bob = new b5roSprite("./res/img/bob1.png",345,0,109,125);
     
 }
 

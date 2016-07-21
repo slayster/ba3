@@ -3,7 +3,7 @@
 //
 // Author: brendan@slayweb.com
 // Web: http://www.slayweb.com
-// Last Updated: 2015-11-22
+// Last Updated: 2016-07-21
 // Github: https://github.com/slayster/ba3
 //
 // ======================================================= //
@@ -22,6 +22,16 @@ var tiles = [];
 var fromdir = 0;
 var bob;
 
+var compass_back;
+var compass_arrow_up_on;
+var compass_arrow_down_on;
+var compass_arrow_left_on;
+var compass_arrow_right_on;
+var compass_arrow_up_off;
+var compass_arrow_down_off;
+var compass_arrow_left_off;
+var compass_arrow_right_off;
+
 // ======================================================= //
 // OBJECTS
 // ======================================================= //
@@ -30,28 +40,28 @@ function ba3MazeTile(tiletypeid,xp,yp) {
 
     function check_n(typeid) {
         if ((typeid==1)||(typeid==2)||(typeid==5)||(typeid==6)||(typeid==10)||(typeid==12)||(typeid==13)||(typeid==14)) {
-            return true
+            return true;
         } else {
             return false;
         }
     }
     function check_s(typeid) {
         if ((typeid==0)||(typeid==3)||(typeid==5)||(typeid==6)||(typeid==8)||(typeid==11)||(typeid==12)||(typeid==14)||(typeid==15)) {
-            return true
+            return true;
         } else {
             return false;
         }
     }
     function check_e(typeid) {
-        if ((typeid==0)||(typeid==1)||(typeid==4)||(typeid==6)||(typeid==9)||(typeid==11)||(typeid==13)||(typeid==14)||(typeid=16)) {
-            return true
+        if ((typeid==0)||(typeid==1)||(typeid==4)||(typeid==6)||(typeid==9)||(typeid==11)||(typeid==13)||(typeid==14)||(typeid==16)) {
+            return true;
         } else {
             return false;
         }
     }
     function check_w(typeid) {
         if ((typeid==2)||(typeid==3)||(typeid==4)||(typeid==6)||(typeid==7)||(typeid==11)||(typeid==12)||(typeid==13)) {
-            return true
+            return true;
         } else {
             return false;
         }
@@ -142,7 +152,29 @@ function showCurrentTile() {
 }
 
 function showCompass() {
+    renderer.add(compass_back);
 
+    tile = level[pos_y_current][pos_x_current];
+    if (tile.dirnorth) {
+        renderer.add(compass_arrow_up_on);
+    } else {
+        renderer.add(compass_arrow_up_off);
+    }    
+    if (tile.dirsouth) {
+        renderer.add(compass_arrow_down_on);
+    } else {
+        renderer.add(compass_arrow_down_off);
+    }    
+    if (tile.dirwest) {
+        renderer.add(compass_arrow_left_on);
+    } else {
+        renderer.add(compass_arrow_left_off);
+    }    
+    if (tile.direast) {
+        renderer.add(compass_arrow_right_on);
+    } else {
+        renderer.add(compass_arrow_right_off);
+    }    
 }
 
 function loadLevel() {
@@ -192,6 +224,16 @@ function loadLevel() {
     // load bob (109x125)
     bob = new b5roSprite("./res/img/bob1.png",345,0,109,125);
     
+    // Load Compass (178x177)
+    compass_back = new b5roSprite("./res/img/compass-back.png",620,420,178,177);
+    compass_arrow_up_on = new b5roSprite("./res/img/compass-arrow-up-on.png",696,452,20,57);
+    compass_arrow_down_on = new b5roSprite("./res/img/compass-arrow-down-on.png",696,509,20,56);
+    compass_arrow_left_on = new b5roSprite("./res/img/compass-arrow-left-on.png",653,496,50,20);
+    compass_arrow_right_on = new b5roSprite("./res/img/compass-arrow-right-on.png",709,496,57,20);
+    compass_arrow_up_off = new b5roSprite("./res/img/compass-arrow-up-off.png",696,452,20,57);
+    compass_arrow_down_off = new b5roSprite("./res/img/compass-arrow-down-off.png",696,509,20,56);
+    compass_arrow_left_off = new b5roSprite("./res/img/compass-arrow-left-off.png",653,496,50,20);
+    compass_arrow_right_off = new b5roSprite("./res/img/compass-arrow-right-off.png",709,496,57,20);
 }
 
 

@@ -31,6 +31,15 @@ var compass_arrow_up_off;
 var compass_arrow_down_off;
 var compass_arrow_left_off;
 var compass_arrow_right_off;
+var compass_n_butt;
+var compass_s_butt;
+var compass_w_butt;
+var compass_e_butt;
+var compass_n_off;
+var compass_s_off;
+var compass_w_off;
+var compass_e_off;
+
 
 // ======================================================= //
 // OBJECTS
@@ -151,29 +160,61 @@ function showCurrentTile() {
     
 }
 
+function moveBobOut() {
+
+}
+
 function showCompass() {
     renderer.add(compass_back);
 
     tile = level[pos_y_current][pos_x_current];
     if (tile.dirnorth) {
         renderer.add(compass_arrow_up_on);
+        renderer.add(compass_n_butt);
+        hoverMonitor.add(compass_n_butt);
+        mouseDownMonitor.add(compass_n_butt);
+        mouseUpMonitor.add(compass_n_butt);
+        mouseClickMonitor.add(compass_n_butt);
+        compass_n_butt.onMouseClick = moveBobOut;
     } else {
         renderer.add(compass_arrow_up_off);
+        renderer.add(compass_n_off);
     }    
     if (tile.dirsouth) {
         renderer.add(compass_arrow_down_on);
+        renderer.add(compass_s_butt);
+        hoverMonitor.add(compass_s_butt);
+        mouseDownMonitor.add(compass_s_butt);
+        mouseUpMonitor.add(compass_s_butt);
+        mouseClickMonitor.add(compass_s_butt);
+        compass_s_butt.onMouseClick = moveBobOut;
     } else {
         renderer.add(compass_arrow_down_off);
+        renderer.add(compass_s_off);
     }    
     if (tile.dirwest) {
         renderer.add(compass_arrow_left_on);
+        renderer.add(compass_w_butt);
+        hoverMonitor.add(compass_w_butt);
+        mouseDownMonitor.add(compass_w_butt);
+        mouseUpMonitor.add(compass_w_butt);
+        mouseClickMonitor.add(compass_w_butt);
+        compass_w_butt.onMouseClick = moveBobOut;
     } else {
         renderer.add(compass_arrow_left_off);
+        renderer.add(compass_w_off);
     }    
     if (tile.direast) {
         renderer.add(compass_arrow_right_on);
+        renderer.add(compass_e_butt);
+        hoverMonitor.add(compass_e_butt);
+        mouseDownMonitor.add(compass_e_butt);
+        mouseUpMonitor.add(compass_e_butt);
+        mouseClickMonitor.add(compass_e_butt);
+        compass_e_butt.onMouseClick = moveBobOut;
     } else {
         renderer.add(compass_arrow_right_off);
+        renderer.add(compass_e_off);
     }    
 }
 
@@ -234,6 +275,15 @@ function loadLevel() {
     compass_arrow_down_off = new b5roSprite("./res/img/compass-arrow-down-off.png",696,509,20,56);
     compass_arrow_left_off = new b5roSprite("./res/img/compass-arrow-left-off.png",653,496,50,20);
     compass_arrow_right_off = new b5roSprite("./res/img/compass-arrow-right-off.png",709,496,57,20);
+    
+    compass_n_butt = new b5roButton("./res/img/compass-n-on.png", "./res/img/compass-n-hov.png", "./res/img/compass-n-off.png", "./res/img/compass-n-off.png", 690, 430, 33, 53);
+    compass_s_butt = new b5roButton("./res/img/compass-s-on.png", "./res/img/compass-s-hov.png", "./res/img/compass-s-off.png", "./res/img/compass-s-off.png", 690, 528, 33, 53);
+    compass_w_butt = new b5roButton("./res/img/compass-w-on.png", "./res/img/compass-w-hov.png", "./res/img/compass-w-off.png", "./res/img/compass-w-off.png", 636, 489, 53, 35);
+    compass_e_butt = new b5roButton("./res/img/compass-e-on.png", "./res/img/compass-e-hov.png", "./res/img/compass-e-off.png", "./res/img/compass-e-off.png", 728, 489, 53, 35);
+    compass_n_off = new b5roSprite("./res/img/compass-n-off.png", 690, 430, 33, 53);
+    compass_s_off = new b5roSprite("./res/img/compass-s-off.png", 690, 528, 33, 53);
+    compass_w_off = new b5roSprite("./res/img/compass-w-off.png", 636, 489, 53, 35);
+    compass_e_off = new b5roSprite("./res/img/compass-e-off.png", 728, 489, 53, 35);
 }
 
 

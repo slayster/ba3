@@ -141,6 +141,10 @@ function showCurrentTile() {
     
 }
 
+function showCompass() {
+
+}
+
 function loadLevel() {
     // raw level data
     raw_level = new Array(14);
@@ -194,9 +198,11 @@ function loadLevel() {
 function runGame() {
     bob5Debug("Running Game...");
     
-    loadLevel()
+    loadLevel();
 
-    showCurrentTile()
+    showCurrentTile();
+    
+    showCompass();
 
 }
 

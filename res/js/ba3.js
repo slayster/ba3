@@ -128,6 +128,37 @@ function moveBobInWest() {
     }
 }
 
+function moveBobOutNorth() {
+    if (this.getY()>-126) {
+        this.setY(this.getY()-1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
+
+function moveBobOutSouth() {
+    if (this.getY()<600) {
+        this.setY(this.getY()+1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
+
+function moveBobOutEast() {
+    if (this.getX()<800) {
+        this.setX(this.getX()+1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
+
+function moveBobOutWest() {
+    if (this.getX()>=-109) {
+        this.setX(this.getX()-1);
+    } else {
+        movecontroller.remove(bob);
+    }
+}
 
 // ======================================================= //
 // MAIN GAME LOGIC
@@ -160,8 +191,57 @@ function showCurrentTile() {
     
 }
 
-function moveBobOut() {
+function clear_compass() {
+    renderer.remove(compass_back);
+    renderer.remove(compass_arrow_up_on);
+    renderer.remove(compass_arrow_down_on);
+    renderer.remove(compass_arrow_left_on);
+    renderer.remove(compass_arrow_right_on);
+    renderer.remove(compass_arrow_up_off);
+    renderer.remove(compass_arrow_down_off);
+    renderer.remove(compass_arrow_left_off);
+    renderer.remove(compass_arrow_right_off);
+    renderer.remove(compass_n_butt);
+    renderer.remove(compass_s_butt);
+    renderer.remove(compass_w_butt);
+    renderer.remove(compass_e_butt);
+    renderer.remove(compass_n_off);
+    renderer.remove(compass_s_off);
+    renderer.remove(compass_w_off);
+    renderer.remove(compass_e_off);
+}
 
+function moveBobOutClick(fromdir) {
+    clear_compass();
+    switch (fromdir) {
+        case 0:
+            bob.move = moveBobOutNorth;
+            break;
+        case 1:
+            bob.move = moveBobOutSouth;
+            break;
+        case 2:
+            bob.move = moveBobOutEast;
+            break;
+        case 3:
+            bob.move = moveBobOutWest;
+            break;
+    }
+    movecontroller.add(bob);    
+
+}
+
+function moveBobOutClickN() {
+    moveBobOutClick(0)
+}
+function moveBobOutClickS() {
+    moveBobOutClick(1)
+}
+function moveBobOutClickW() {
+    moveBobOutClick(2)
+}
+function moveBobOutClickE() {
+    moveBobOutClick(3)
 }
 
 function showCompass() {
@@ -175,7 +255,7 @@ function showCompass() {
         mouseDownMonitor.add(compass_n_butt);
         mouseUpMonitor.add(compass_n_butt);
         mouseClickMonitor.add(compass_n_butt);
-        compass_n_butt.onMouseClick = moveBobOut;
+        compass_n_butt.onMouseClick = moveBobOutClickN;
     } else {
         renderer.add(compass_arrow_up_off);
         renderer.add(compass_n_off);
@@ -187,7 +267,7 @@ function showCompass() {
         mouseDownMonitor.add(compass_s_butt);
         mouseUpMonitor.add(compass_s_butt);
         mouseClickMonitor.add(compass_s_butt);
-        compass_s_butt.onMouseClick = moveBobOut;
+        compass_s_butt.onMouseClick = moveBobOutClickS;
     } else {
         renderer.add(compass_arrow_down_off);
         renderer.add(compass_s_off);
@@ -199,7 +279,7 @@ function showCompass() {
         mouseDownMonitor.add(compass_w_butt);
         mouseUpMonitor.add(compass_w_butt);
         mouseClickMonitor.add(compass_w_butt);
-        compass_w_butt.onMouseClick = moveBobOut;
+        compass_w_butt.onMouseClick = moveBobOutClickW;
     } else {
         renderer.add(compass_arrow_left_off);
         renderer.add(compass_w_off);
@@ -211,7 +291,7 @@ function showCompass() {
         mouseDownMonitor.add(compass_e_butt);
         mouseUpMonitor.add(compass_e_butt);
         mouseClickMonitor.add(compass_e_butt);
-        compass_e_butt.onMouseClick = moveBobOut;
+        compass_e_butt.onMouseClick = moveBobOutClickE;
     } else {
         renderer.add(compass_arrow_right_off);
         renderer.add(compass_e_off);

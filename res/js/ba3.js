@@ -101,6 +101,7 @@ function moveBobInNorth() {
         this.setY(this.getY()+1);
     } else {
         movecontroller.remove(bob);
+        showCompass();
     }
 }
 
@@ -109,6 +110,7 @@ function moveBobInSouth() {
         this.setY(this.getY()-1);
     } else {
         movecontroller.remove(bob);
+        showCompass();
     }
 }
 
@@ -117,6 +119,7 @@ function moveBobInEast() {
         this.setX(this.getX()-1);
     } else {
         movecontroller.remove(bob);
+        showCompass();
     }
 }
 
@@ -125,6 +128,7 @@ function moveBobInWest() {
         this.setX(this.getX()+1);
     } else {
         movecontroller.remove(bob);
+        showCompass();
     }
 }
 
@@ -133,6 +137,10 @@ function moveBobOutNorth() {
         this.setY(this.getY()-1);
     } else {
         movecontroller.remove(bob);
+        pos_y_current = pos_y_current - 1;
+        fromdir = 1;
+        this.setY(600);
+        showCurrentTile();
     }
 }
 
@@ -141,6 +149,10 @@ function moveBobOutSouth() {
         this.setY(this.getY()+1);
     } else {
         movecontroller.remove(bob);
+        pos_y_current = pos_y_current + 1;
+        fromdir = 0;
+        this.setY(-126);
+        showCurrentTile();
     }
 }
 
@@ -149,14 +161,22 @@ function moveBobOutEast() {
         this.setX(this.getX()+1);
     } else {
         movecontroller.remove(bob);
+        pos_x_current = pos_x_current + 1;
+        fromdir = 3;
+        this.setX(-109);
+        showCurrentTile();
     }
 }
 
 function moveBobOutWest() {
-    if (this.getX()>=-109) {
-        this.setX(this.getX()-1);
+    if (bob.getX()>-109) {
+        bob.setX(bob.getX()-1);
     } else {
         movecontroller.remove(bob);
+        pos_x_current = pos_x_current - 1;
+        fromdir = 2;
+        bob.setX(800);
+        showCurrentTile();
     }
 }
 
@@ -192,6 +212,7 @@ function showCurrentTile() {
 }
 
 function clear_compass() {
+    bob5Debug("Clear Compass");
     renderer.remove(compass_back);
     renderer.remove(compass_arrow_up_on);
     renderer.remove(compass_arrow_down_on);
@@ -216,15 +237,19 @@ function moveBobOutClick(fromdir) {
     switch (fromdir) {
         case 0:
             bob.move = moveBobOutNorth;
+            bob5Debug("Moving North");
             break;
         case 1:
             bob.move = moveBobOutSouth;
+            bob5Debug("Moving South");
             break;
         case 2:
             bob.move = moveBobOutEast;
+            bob5Debug("Moving East");
             break;
         case 3:
             bob.move = moveBobOutWest;
+            bob5Debug("Moving West");
             break;
     }
     movecontroller.add(bob);    
@@ -237,14 +262,15 @@ function moveBobOutClickN() {
 function moveBobOutClickS() {
     moveBobOutClick(1)
 }
-function moveBobOutClickW() {
+function moveBobOutClickE() {
     moveBobOutClick(2)
 }
-function moveBobOutClickE() {
+function moveBobOutClickW() {
     moveBobOutClick(3)
 }
 
 function showCompass() {
+    bob5Debug("Showing Compass");
     renderer.add(compass_back);
 
     tile = level[pos_y_current][pos_x_current];
@@ -370,12 +396,14 @@ function loadLevel() {
 function runGame() {
     bob5Debug("Running Game...");
     
+    movecontroller.remove(story);
+    mouseClickMonitor.remove(story);
+    renderer.remove(story);
+    
     loadLevel();
 
     showCurrentTile();
     
-    showCompass();
-
 }
 
 function runIntro() {

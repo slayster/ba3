@@ -188,6 +188,7 @@ function showCurrentTile() {
     bob5ClearAll();    
 
     tile = level[pos_y_current][pos_x_current];
+    tile.noofvisits = tile.noofvisits + 1;
     renderer.add(tiles[tile.tiletype]);
     
     renderer.add(bob);
@@ -208,7 +209,7 @@ function showCurrentTile() {
     }
     movecontroller.add(bob);    
     
-    
+    bob5Debug("Visit: "+tile.noofvisits);
 }
 
 function clear_compass() {

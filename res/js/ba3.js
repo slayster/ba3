@@ -270,6 +270,27 @@ function moveBobOutClickW() {
     moveBobOutClick(3)
 }
 
+function moveBobOutKeyN(e) {
+    if (e.key=="ArrowUp") {
+        moveBobOutClick(0)
+    }
+}
+function moveBobOutKeyS(e) {
+    if (e.key=="ArrowDown") {
+        moveBobOutClick(1)
+    }
+}
+function moveBobOutKeyE(e) {
+    if (e.key=="ArrowRight") {
+        moveBobOutClick(2)
+    }
+}
+function moveBobOutKeyW(e) {
+    if (e.key=="ArrowLeft") {
+        moveBobOutClick(3)
+    }
+}
+
 function showCompass() {
     bob5Debug("Showing Compass");
     renderer.add(compass_back);
@@ -282,7 +303,9 @@ function showCompass() {
         mouseDownMonitor.add(compass_n_butt);
         mouseUpMonitor.add(compass_n_butt);
         mouseClickMonitor.add(compass_n_butt);
+        keyPressMonitor.add(compass_n_butt);
         compass_n_butt.onMouseClick = moveBobOutClickN;
+        compass_n_butt.onKeyPress = moveBobOutKeyN;
     } else {
         renderer.add(compass_arrow_up_off);
         renderer.add(compass_n_off);
@@ -294,7 +317,9 @@ function showCompass() {
         mouseDownMonitor.add(compass_s_butt);
         mouseUpMonitor.add(compass_s_butt);
         mouseClickMonitor.add(compass_s_butt);
+        keyPressMonitor.add(compass_s_butt);
         compass_s_butt.onMouseClick = moveBobOutClickS;
+        compass_s_butt.onKeyPress = moveBobOutKeyS;
     } else {
         renderer.add(compass_arrow_down_off);
         renderer.add(compass_s_off);
@@ -306,7 +331,9 @@ function showCompass() {
         mouseDownMonitor.add(compass_w_butt);
         mouseUpMonitor.add(compass_w_butt);
         mouseClickMonitor.add(compass_w_butt);
+        keyPressMonitor.add(compass_w_butt);
         compass_w_butt.onMouseClick = moveBobOutClickW;
+        compass_w_butt.onKeyPress = moveBobOutKeyW;
     } else {
         renderer.add(compass_arrow_left_off);
         renderer.add(compass_w_off);
@@ -318,7 +345,9 @@ function showCompass() {
         mouseDownMonitor.add(compass_e_butt);
         mouseUpMonitor.add(compass_e_butt);
         mouseClickMonitor.add(compass_e_butt);
+        keyPressMonitor.add(compass_e_butt);
         compass_e_butt.onMouseClick = moveBobOutClickE;
+        compass_e_butt.onKeyPress = moveBobOutKeyE;
     } else {
         renderer.add(compass_arrow_right_off);
         renderer.add(compass_e_off);
